@@ -97,11 +97,7 @@ print(s.recv(1024).decode())
 s.send("acknowledgement received from the server".encode())
 
 ```
-## OUTPUTS:
-
 ## OUTPUT:
-
-![alt text](Output.Cn.png)
 
 ### SERVER:
 ![alt text](server.cn.png)
