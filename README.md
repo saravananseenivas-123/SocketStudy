@@ -54,15 +54,47 @@ Socket programming finds applications in various domains, including web developm
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
 ## Functions:
-socket(): Creates a new endpoint for communication. It returns a socket descriptor (a file descriptor in Unix) used in subsequent calls.
+1. socket.socket()
+Creates a new socket object.
+pythonimport socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # TCP socket
 
-bind(): Associates a socket with a specific local address (IP address and port number). This is primarily used by servers to "own" a port.
+2. socket.bind()
+Binds the socket to a specific address and port (used on server side).
+pythons.bind(('localhost', 8080))
 
-listen(): Puts the server socket in a passive mode where it waits for incoming connection requests from clients.connect(): Used by a client to initiate a connection to a remote server's address and port.
+3. socket.listen()
+Puts the server socket into listening mode to accept incoming connections.
+pythons.listen(5)  # 5 = max queued connections
 
-accept(): Used by a server to establish a connection with a client. It blocks until a connection arrives and then returns a new socket descriptor specifically for that connection.
+4. socket.accept()
+Accepts an incoming connection; returns a new socket and client address.
+pythonconn, addr = s.accept()
+print(f"Connected by {addr}")
 
-close() / closesocket(): Terminates the connection and releases the resources associated with the socket descriptor.
+5. socket.connect()
+Connects the client socket to a remote server.
+pythons.connect(('localhost', 8080))
 
+6. socket.send()
+Sends data to the connected socket (may not send all bytes at once).
+pythons.send(b"Hello, Server!")
+
+7. socket.recv()
+Receives data from the socket up to a specified buffer size.
+pythondata = s.recv(1024)  # buffer size = 1024 bytes
+print(data.decode())
+
+8. socket.sendall()
+Like send(), but guarantees all data is sent by retrying internally.
+pythons.sendall(b"Hello, this is a complete message!")
+
+9. socket.close()
+Closes the socket and releases the port/resources.
+pythons.close()
+
+10. socket.setsockopt()
+Sets socket options — commonly used to reuse address and avoid "Address already in use" errors.
+pythons.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 ## Result:
 Thus the study of Socket Programming Completed Successfully
